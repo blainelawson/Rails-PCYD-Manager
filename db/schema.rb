@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_184933) do
+ActiveRecord::Schema.define(version: 2019_07_10_170929) do
 
   create_table "committee_members", force: :cascade do |t|
     t.integer "committee_id"
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2019_07_09_184933) do
     t.integer "issue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ranking"
   end
 
   create_table "members", force: :cascade do |t|
     t.date "dob"
     t.boolean "admin", default: false
-    t.integer "director_id"
     t.string "name"
     t.string "phone"
     t.string "email"

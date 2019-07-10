@@ -1,0 +1,7 @@
+<h2>Members</h2>
+
+<ul style="list-style-type:none;">
+    <% @members.sort_by{|k| k[:name]}.each do |member| %>
+        <li><%= member.name %></li>
+    <% end %>
+</ul>
