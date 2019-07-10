@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
 
   get '/login', :to => 'sessions#new'
+
+  post 'sessions', :to => 'sessions#create'
   
   resources :members, only: [:show, :index] do # What does this entire block make available for members?
     resources :issues, only: [:new, :show, :edit, :index]
