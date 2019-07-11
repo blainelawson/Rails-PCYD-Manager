@@ -16,11 +16,12 @@ Rails.application.routes.draw do
 
   resources :issues
 
+  resources :committees, except: [:show, :index]
+
   resources :committees, only: [:show, :index] do
     resources :members, only: [:new, :show, :edit, :index]
   end
 
-  resources :committees, except: [:show, :index]
 
   post 'sessions', :to => 'sessions#create'
 

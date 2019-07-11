@@ -1,4 +1,5 @@
 <h2>Committees</h2>
+<%= new_committee_link %>
 <%@committees.each do |committee|%>
   <p>
   <h3><%= committee.name %> <%= edit_committee_link(committee) %></h3>

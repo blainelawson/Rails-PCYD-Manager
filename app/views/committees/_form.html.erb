@@ -1,0 +1,16 @@
+<%= form_for(@committee) do |f| %>
+    <p>
+        <%= f.label :name, "Committee Name: " %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <strong>Who''s on your committee?</strong>
+    </p>
+    <%= f.collection_check_boxes(:member_ids, @members, :id, :name) do |b| %>
+        <p>
+        <% # binding.pry %>
+            <%= b.check_box(checked: @committee.member_ids.include?(b.object.id)) + " " + b.label %>
+        </p>
+    <% end %>
+    <%= f.submit "Add Committee" %>
+<% end %>

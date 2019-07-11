@@ -14,4 +14,9 @@ module CommitteesHelper
         end
     end
 
+    def new_committee_link
+        if admin?
+            tag.a "Add Committee", href: new_committee_path, :class => "edit"
+        end
+    end
 end
