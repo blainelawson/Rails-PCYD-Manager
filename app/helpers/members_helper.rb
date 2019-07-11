@@ -1,6 +1,6 @@
 module MembersHelper
     def admin?
-        current_user.admin? 
+        logged_in? && current_user.admin? 
     end
 
     def member_privilege?
