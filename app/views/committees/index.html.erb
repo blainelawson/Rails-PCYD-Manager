@@ -1,0 +1,11 @@
+<h2>Committees</h2>
+<%@committees.each do |committee|%>
+  <p>
+  <h3><%= committee.name %> <% if logged_in? && admin? %><%= link_to "edit", edit_committee_path(committee), class: "edit" %><%end%></h3>
+  <h4>Chair: <% if committee.chair %><%= committee.chair.name%><%else%>Position empty<% end %></h4>
+  <ul style="list-style-type:none;">
+  <%committee.members.each do |member|%>
+    <li><%= view_member_link_or_text(member) %></li>
+  <%end%>
+</p>
+<%end%>

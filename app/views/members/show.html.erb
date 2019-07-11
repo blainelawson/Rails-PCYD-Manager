@@ -1,7 +1,7 @@
-<h2>Welcome, <%= @member.name %></h2>
-
+<h2>Welcome, <%= @member.name %> </h2>
+<%= edit_member_link %>
 <div>
-  <h3>Contact Info  <%= edit_member_link %><br/></h3>
+  <h3>Contact Info <br/></h3>
   <ul style="list-style-type:none;">
     <li>E-mail: <%=@member.email%></li>
     <li>Phone: <%=@member.phone%></li>

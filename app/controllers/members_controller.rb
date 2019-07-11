@@ -7,7 +7,6 @@ class MembersController < ApplicationController
 
     def create
         @member = Member.create(member_params)
-        binding.pry
         if @member
             @member.issue_ids = params[:member][:issue_ids]
             session[:user_id] = @member.id
@@ -38,16 +37,14 @@ class MembersController < ApplicationController
         redirect_to @member
     end
 
-    helpers
-
-        def datify_dob
-            month = params[:member][:month].to_i
-            day = params[:member][:day].to_i
-            year = params[:member][:year].to_i
-            params[:member][:dob] = Date.new(year, month, day)
-        end
-
     private
+
+    def datify_dob
+        month = params[:member][:month].to_i
+        day = params[:member][:day].to_i
+        year = params[:member][:year].to_i
+        params[:member][:dob] = Date.new(year, month, day)
+    end
 
     def member_params
         datify_dob
