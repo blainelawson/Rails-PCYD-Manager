@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
 
   get '/login', :to => 'sessions#new'
-
-  post 'sessions', :to => 'sessions#create'
+  get '/logout', :to => 'sessions#destroy'
+  
+  get '/signup', :to => 'members#new'
   
   resources :members, only: [:show, :index] do # What does this entire block make available for members?
     resources :issues, only: [:new, :show, :edit, :index]
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
   end
 
   resources :committees, except: [:show, :index]
+
+  post 'sessions', :to => 'sessions#create'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # http://localhost:3000/rails/info/routes

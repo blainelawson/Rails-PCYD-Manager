@@ -1,0 +1,30 @@
+<h2>Welcome, <%= @member.name %></h2>
+
+<div>
+  <h3>Contact Info  <%= edit_member_link %><br/></h3>
+  <ul style="list-style-type:none;">
+    <li>E-mail: <%=@member.email%></li>
+    <li>Phone: <%=@member.phone%></li>
+    <li>Address: <%= @member.address %></li>
+  </ul>
+
+</div>
+<br />
+<div>
+  <h3>What's Important to You: </h3>'
+  <ol>
+    <% @member.issues.each do |issue| %>
+      <li><%= issue.key_word.titleize %></li>
+    <% end %>
+  </ol>
+</div>
+<br />
+<div>
+  <h3>Your Committees  </h3>
+  <ul>
+    <% @member.committees.each do |committee|%>
+        <li><%= committee.name %></li>
+    <%end%>
+  </ul>
+</div>
+
