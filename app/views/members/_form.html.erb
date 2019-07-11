@@ -3,17 +3,26 @@
     <p><%= f.label :phone, "Phone: " %><%= f.text_field :phone %></p>
     <p><%= f.label :email, "E-mail: " %><%= f.text_field :email %></p>
     <p><%= f.label :address, "Address: " %><%= f.text_field :address %></p>
-    <p><%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
-        <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
-        <% end %>
+    <p>
+        <%= f.label :issue_id, "What issues interest you? " %><br />
+        <p>
+            <%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
+            <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
+            <% end %>
+    
+        </p>
     </p>
-    <% if !@member.nil? %>
+    <% if logged_in? %>
         <p>
             <%= f.label :password, "Re-enter your password: " %>
-            <%= f.password_field :password if !@member.nil? %>
+            <%= f.password_field :password %>
         </p>
-        <%= f.submit "Submit Changes" if !@member.nil? %>
+        <%= f.submit "Submit Changes" %>
     <% else %>
-        <%= f.submit "Register" if @member.nil? %>
+        <p>
+            <%= f.label :password, "Password: " %>
+            <%= f.password_field :password %>
+        </p>
+        <%= f.submit "Register" %>
     <% end %>
 <% end %>
