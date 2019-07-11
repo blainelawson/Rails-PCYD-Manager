@@ -1,5 +1,12 @@
 <%= form_for(@member) do |f| %>
     <p><%= f.label :name, "Name: " %><%= f.text_field :name %></p>
+    <% if !logged_in? %>
+        <p>Date of Birth:</p>
+        <p> <%= f.label :month, "Month: " %><%= f.text_field :month, maxlength: "2" %> 
+            <%= f.label :day, "Day: " %><%= f.text_field :day, maxlength: "2" %>
+            <%= f.label :year, "Year: " %><%= f.text_field :year, maxlength: "4" %>    
+        </p>
+    <% end %>
     <p><%= f.label :phone, "Phone: " %><%= f.text_field :phone %></p>
     <p><%= f.label :email, "E-mail: " %><%= f.text_field :email %></p>
     <p><%= f.label :address, "Address: " %><%= f.text_field :address %></p>
