@@ -12,18 +12,20 @@
 <br />
 <div>
   <h3>What''s Important to You: </h3>
+  <div>
   <ol>
     <% @member.issues.each do |issue| %>
-      <li><%= issue.key_word.titleize %></li>
+      <li class="list"><%= issue.key_word.titleize %></li>
     <% end %>
   </ol>
+  </div>
 </div>
 <br />
 <div>
   <h3>Your Committees  </h3>
   <ul>
     <% @member.committees.each do |committee|%>
-        <li><%= committee.name %></li>
+        <li class="list"><%= committee.name %></li>
     <%end%>
   </ul>
 </div>

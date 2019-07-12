@@ -26,10 +26,12 @@
       <li class="navbar"><a href="/members" class="navbar">Members</a></li>
       <% if logged_in? %>
         <a href="/logout" class="logout">Log-out</a>
+        <li class="navbar navbarright"><%= link_to "Your Profile", member_path(current_user) %></li>
       <% else %>
         <a href="/login" class="logout">Log-in</a>
       <% end %>
       <img src="/images/PCYD_logo.png" class="navbar">
+
     </ul>
 
     <div class="wrapper">

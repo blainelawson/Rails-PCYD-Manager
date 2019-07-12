@@ -1,9 +1,10 @@
-<h2>Board Members</h2>
+<h2>Directors</h2>
+<%= add_director_link %>
 <% @directors.each do |director| %>
   <p>
     <ul class="contact">
       <li>
-        <%= director.title %> | <%= director_name(director) %>
+        <%= director.title %> | <%= director_name(director) %><%= edit_director_link(director) %>
       </li>
       <li>Phone: <%=director.phone%></li>
       <li>E-mail: <%=director.email%></li>

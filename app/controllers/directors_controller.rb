@@ -13,4 +13,8 @@ class DirectorsController < ApplicationController
         @directors = Director.all
     end
 
+    def edit
+        @director = Director.find_by(id: params[:id])
+    end
+
 end
