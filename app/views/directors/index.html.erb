@@ -1,0 +1,12 @@
+<h2>Board Members</h2>
+<% @directors.each do |director| %>
+  <p>
+    <ul class="contact">
+      <li>
+        <%= director.title %> | <%= director_name(director) %>
+      </li>
+      <li>Phone: <%=director.phone%></li>
+      <li>E-mail: <%=director.email%></li>
+    </ul>
+  </p>
+<%end%>
