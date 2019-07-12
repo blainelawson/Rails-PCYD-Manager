@@ -1,20 +1,32 @@
 <%= form_for(@committee) do |f| %>
     <p>
-        <%= f.label :name, "Committee Name: " %>
+        <strong><%= f.label :name, "Committee Name: " %></strong>
         <%= f.text_field :name %>
+        <strong><%= f.label :chair, "Committee Chair: " %></strong>
+        <% if @committee.chair %> <!-- I would love a better way of doing this -->
+            <%= f.collection_select :chair, @members, :id, :name, { selected: @committee.chair.id } %>
+        <% else %>
+            <%= f.collection_select :chair, @members, :id, :name, include_blank: "Select committee chair" %>
+        <% end %>
     </p>
     <p>
         <strong>Who''s on your committee?</strong>
     </p>
     <%= f.collection_check_boxes(:member_ids, @members, :id, :name) do |b| %>
         <p>
-        <% # binding.pry %>
-            <%= b.check_box(checked: @committee.member_ids.include?(b.object.id)) + " " + b.label %>
+           <%= b.check_box(checked: @committee.member_ids.include?(b.object.id)) + " " + b.label %>
         </p>
     <% end %>
     <% if Committee.exists?(@committee.id) %>
-        <%= f.submit "Edit Committee" %>
+        <p>
+            <%= f.submit "Update Committee" %><br />
+        </p>
     <% else %>
         <%= f.submit "Add Committee" %>
     <% end %>
+<% end %>
+<% if Committee.exists?(@committee.id) %>
+<p>
+<%= button_to "Delete Committee", {:controller => 'committees', :action => 'delete', :id => @committee.id}, :method => :delete %>
+</p>
 <% end %>

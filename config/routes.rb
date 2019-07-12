@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :committees, except: [:show, :index]
 
+  post '/committees/:id', :to => 'committees#delete'
+
   resources :committees, only: [:show, :index] do
     resources :members, only: [:new, :show, :edit, :index]
   end
