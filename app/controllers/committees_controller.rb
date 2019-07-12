@@ -3,6 +3,11 @@ class CommitteesController < ApplicationController
         @committee = Committee.new
         @members = Member.all
     end
+
+    def create
+        @committee = Committee.create(committee_params)
+        @committee.member_ids = params[:committee][:member_ids]
+    end
    
     def index
         @committees = Committee.all
@@ -16,5 +21,10 @@ class CommitteesController < ApplicationController
         @members = Member.all
     end
     
+    private
+
+        def committee_params
+            params.require(:committee).permit(:name, :member_ids)
+        end
 
 end

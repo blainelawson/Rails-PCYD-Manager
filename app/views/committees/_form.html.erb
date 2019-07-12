@@ -12,5 +12,9 @@
             <%= b.check_box(checked: @committee.member_ids.include?(b.object.id)) + " " + b.label %>
         </p>
     <% end %>
-    <%= f.submit "Add Committee" %>
+    <% if Committee.exists?(@committee.id) %>
+        <%= f.submit "Edit Committee" %>
+    <% else %>
+        <%= f.submit "Add Committee" %>
+    <% end %>
 <% end %>
