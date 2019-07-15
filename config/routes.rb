@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   get '/logout', :to => 'sessions#destroy'
   
   get '/signup', :to => 'members#new'
-  
+
+  get '/members/:member_id/issues/edit_rank', :to => 'issues#edit_rank'
+  post '/members/:member_id/issues/edit', :to => 'issues#update_rank'
+
+
   resources :members, only: [:show, :index] do # What does this entire block make available for members?
-    resources :issues, only: [:new, :show, :edit, :index]
+    resources :issues, only: [:new, :show, :index] 
   end
+
 
   resources :members, except: [:show, :index] # I need to do this again to make the rest of the routes available, yes??????
 

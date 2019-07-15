@@ -7,10 +7,11 @@ class MembersController < ApplicationController
 
     def create
         @member = Member.create(member_params)
+
         if @member
-            @member.issue_ids = params[:member][:issue_ids]
+            @member.issue_ids = params[:member][:issue_ids] # refactor with accepts_nested_attributes_for :issue_ids???
             session[:user_id] = @member.id
-            redirect_to member_path(@member)
+            redirect_to "/members/#{@member.id}/issues/edit_rank"
         else
             redirect_to new_member_path
         end
@@ -34,16 +35,20 @@ class MembersController < ApplicationController
         @member.update(member_params)
         @member.issue_ids = params[:member][:issue_ids]
         @member.save
-        redirect_to @member
+        redirect_to "/members/#{params[:id]}/issues/edit_rank"
     end
 
     private
 
     def datify_dob
-        month = params[:member][:month].to_i
-        day = params[:member][:day].to_i
-        year = params[:member][:year].to_i
-        params[:member][:dob] = Date.new(year, month, day)
+        if logged_in? && Member.exists?(current_user.id)
+            params[:member][:dob] = current_user.dob
+        else
+            month = params[:member][:month].to_i
+            day = params[:member][:day].to_i
+            year = params[:member][:year].to_i
+            params[:member][:dob] = Date.new(year, month, day)
+        end
     end
 
     def member_params
