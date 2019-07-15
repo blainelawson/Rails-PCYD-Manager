@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   
   get '/signup', :to => 'members#new'
 
-  get '/members/:member_id/issues/edit_rank', :to => 'issues#edit_rank'
-  post '/members/:member_id/issues/edit', :to => 'issues#update_rank'
+  get '/members/:member_id/issues/edit_rank', :to => 'member_issues#edit_rank'
+  post '/members/:member_id/issues/edit', :to => 'member_issues#update_rank'
 
 
   resources :members, only: [:show, :index] do # What does this entire block make available for members?

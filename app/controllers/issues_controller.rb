@@ -8,14 +8,9 @@ class IssuesController < ApplicationController
     def edit
     end
 
-    def edit_rank
-        @member = Member.find(params[:member_id])
-        @member_issues = @member.issues
-    end
+    private
 
-    def update_rank
-        binding.pry
-        @member = Member.find(params[:member_id])
-        # binding.pry
+    def issue_params
+
     end
 end

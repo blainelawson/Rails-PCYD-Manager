@@ -1,10 +1,10 @@
 <h2>Your Issues</h2>
-<h3>Please rank your issues in order of importance</h3>
+<h3>Please rank your issues in order of importance:</h3>
 <%= form_for @member, :url => "edit", :method => 'post' do |f| %>
         <%= f.fields_for :member_issues, @member.member_issues do |issue_field| %>
-            <%  # binding.pry %>
             <p>
-            <%= issue_field.text_field :ranking, { maxlength: 1, size: 1, style: "direction: rtl;" } %> <%= issue_field.object.issue.key_word.titleize %> 
+                <%= issue_field.text_field :ranking, { maxlength: 1, size: 1, style: "direction: rtl;" } %> 
+                <%= issue_field.object.issue.key_word.titleize %> 
             </p>
         <% end %>
     <%= f.submit "Done" %>
