@@ -1,0 +1,27 @@
+<%= form_for @director do |f| %>
+    <p>
+        <%= f.label :title, "Director Title: " %>
+        <%= f.text_field :title, placeholder: "e.g. Political Director" %>
+    </p>
+    <p>
+        <%= f.label :email, "E-mail: " %>
+        <%= f.text_field :email, placeholder: "e.g. politics@pcyd.org" %>
+    </p>
+    <p>
+        <%= f.label :phone, "Phone: " %>
+        <%= f.text_field :phone, placeholder: "727-989-4651" %>
+    </p>
+    <p>
+    <%= f.label :chair, "Chairperson: " %>
+    <% if @director.chair %> <!-- Would love a better way of doing this as well -->
+        <%= f.collection_select :chair, @members, :id, :name, { selected: @director.chair.id } %>
+    <% else %>
+        <%= f.collection_select :chair, @members, :id, :name, include_blank: "Select from list" %>
+    <% end %>
+    </p>
+    <% if @director.chair %>
+        <%= f.submit "Submit Changes" %>
+    <% else %>
+        <%= f.submit "Create New Director" %>
+    <% end %>
+<% end %>
