@@ -38,9 +38,8 @@ class MembersController < ApplicationController
     
     def update
         @member = current_user
-        # binding.pry
-
         @member.update(member_params)
+
         redirect_to "/members/#{params[:id]}/issues/edit_rank"
     end
 
@@ -59,6 +58,6 @@ class MembersController < ApplicationController
 
     def member_params
         datify_dob
-        params.require(:member).permit(:name, :phone, :email, :address, :dob, :password, :issues_attributes => [:key_word])
+        params.require(:member).permit(:name, :phone, :email, :address, :dob, :password, issue_ids: [], issues_attributes: [:key_word] )
     end
 end
