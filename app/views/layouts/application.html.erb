@@ -42,8 +42,11 @@
 
       <footer class="branding">
         <small>&copy; 2019 <strong>PcydManager</strong></small>
-        <% if flash[:message] %>
-          <p><center><font color="red"><%= flash[:message] %></font></center></p>
+
+        <% flash.each do |name, msg| %>
+          <% if flash[:message] -%>
+            <%= content_tag :div, name + msg.values.join, class: "error" %>
+          <% end -%>
         <% end %>
       </footer>
     </div>

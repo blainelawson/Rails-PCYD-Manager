@@ -40,7 +40,14 @@ class MembersController < ApplicationController
         @member = current_user
         @member.update(member_params)
 
-        redirect_to "/members/#{params[:id]}/issues/edit_rank"
+        # binding.pry
+
+        if !@member.errors.messages.empty?
+            flash[:message] = @member.errors.messages # @member.errors.messages
+            redirect_to edit_member_path(@member)
+        else
+            redirect_to "/members/#{params[:id]}/issues/edit_rank"
+        end
     end
 
     private

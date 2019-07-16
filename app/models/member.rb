@@ -14,7 +14,7 @@ class Member < ApplicationRecord
     validates :email, uniqueness: true
     validates :name, presence: true
     validates :dob, presence: true
-    # validates :issues, length: { maximum: 5 }
+    validates :issues, length: { maximum: 5 }
 
     attr_accessor :month, :day, :year
    
