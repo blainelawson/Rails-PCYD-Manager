@@ -4,6 +4,7 @@
         <%= f.fields_for :member_issues, @member.member_issues do |issue_field| %>
             <p>
                 <%= issue_field.text_field :ranking, { maxlength: 1, size: 1, style: "direction: rtl;" } %> 
+                <% # binding.pry %>
                 <%= issue_field.object.issue.key_word.titleize %> 
             </p>
         <% end %>

@@ -14,9 +14,14 @@
         <%= f.label :issue_id, "What issues interest you? " %><br />
         <p>
             <%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
-            <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
+                <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
+            <% end %>    
+        </p>
+        <p>
+            Issue not listed? Enter up to three new ones here:<br />
+            <%= f.fields_for :issues, @new_issues do |issue_fields| %>
+                <%= issue_fields.text_field :key_word %>
             <% end %>
-    
         </p>
     </p>
     <% if logged_in? %>
