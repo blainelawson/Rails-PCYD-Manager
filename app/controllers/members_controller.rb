@@ -21,7 +21,8 @@ class MembersController < ApplicationController
     end
 
     def show
-        @member = current_user
+        # binding.pry
+        @member = Member.find_by(id: params[:id])
     end
 
     def edit
