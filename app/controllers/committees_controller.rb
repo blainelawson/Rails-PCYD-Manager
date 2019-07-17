@@ -6,19 +6,12 @@ class CommitteesController < ApplicationController
 
     def create
         @committee = Committee.create(committee_params)
-        @committee.member_ids = params[:committee][:member_ids]
-        @committee.chair_id = params[:committee][:chair]
-        @committee.save
         redirect_to committees_path
     end
 
     def update
-        # I stopped using Committee.update(comm_params) because it was dropping my AR associations
         @committee = Committee.find_by(id: params[:id])
-        @committee.name = params[:committee][:name]
-        @committee.member_ids = params[:committee][:member_ids]
-        @committee.chair_id = params[:committee][:chair]
-        @committee.save
+        @committee.update(committee_params)
         redirect_to committees_path
     end
    
@@ -44,7 +37,7 @@ class CommitteesController < ApplicationController
     private
 
         def committee_params
-            params.require(:committee).permit(:name, :member_ids)
+            params.require(:committee).permit(:name, :chair_id, member_ids: [])
         end
 
 end

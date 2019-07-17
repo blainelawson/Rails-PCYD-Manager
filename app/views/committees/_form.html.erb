@@ -4,9 +4,9 @@
         <%= f.text_field :name %>
         <strong><%= f.label :chair, "Committee Chair: " %></strong>
         <% if @committee.chair %> <!-- I would love a better way of doing this -->
-            <%= f.collection_select :chair, @members, :id, :name, { selected: @committee.chair.id } %>
+            <%= f.collection_select :chair_id, @members, :id, :name, { selected: @committee.chair.id } %>
         <% else %>
-            <%= f.collection_select :chair, @members, :id, :name, include_blank: "Select committee chair" %>
+            <%= f.collection_select :chair_id, @members, :id, :name, include_blank: "Select committee chair" %>
         <% end %>
     </p>
     <p>
