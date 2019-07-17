@@ -17,11 +17,7 @@ class MembersController < ApplicationController
     end
 
     def index
-        if params[:committee_id]
-            @members = Committee.find(params[:committee_id]).members
-        else
-            @members = Member.all
-        end
+        @members = Member.all
     end
 
     def show

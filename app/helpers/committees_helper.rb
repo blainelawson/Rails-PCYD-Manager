@@ -14,7 +14,9 @@ module CommitteesHelper
     end
 
     def new_committee_link
-        if admin?
+        if params[:member_id]
+            tag.a "Add committee", href: new_member_committee_path(current_user), :class => "edit"
+        elsif admin?
             tag.a "Add Committee", href: new_committee_path, :class => "edit"
         end
     end

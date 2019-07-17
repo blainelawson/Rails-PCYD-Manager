@@ -5,6 +5,9 @@
         <strong><%= f.label :chair, "Committee Chair: " %></strong>
         <% if @committee.chair %> <!-- I would love a better way of doing this -->
             <%= f.collection_select :chair_id, @members, :id, :name, { selected: @committee.chair.id } %>
+        <% elsif @member %>
+            <%= f.hidden_field :chair_id, :value => @member.id %>
+            <%= @member.name %>
         <% else %>
             <%= f.collection_select :chair_id, @members, :id, :name, include_blank: "Select committee chair" %>
         <% end %>

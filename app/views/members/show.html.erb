@@ -27,7 +27,7 @@
 <br />
 
 <div>
-  <h3>Your Committees  </h3>
+  <h3>Your Committees <%= view_chaired_link %></h3>
   <ul>
     <% @member.committees.each do |committee|%>
         <li class="list"><%= committee_link(committee) %><%= committee_star(committee) %></li>

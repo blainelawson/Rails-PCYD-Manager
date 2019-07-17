@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :members, only: [:show, :index] do 
     resources :issues, only: [:new, :show, :index] 
+    resources :committees, only: [:new, :show, :index]
   end
 
 

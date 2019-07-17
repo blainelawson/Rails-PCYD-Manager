@@ -2,6 +2,8 @@ class CommitteesController < ApplicationController
     def new
         @committee = Committee.new
         @members = Member.all
+
+        @member = Member.find_by(id: params[:member_id]) if params[:member_id]
     end
 
     def create
@@ -18,7 +20,12 @@ class CommitteesController < ApplicationController
     end
    
     def index
-        @committees = Committee.all
+        if params[:member_id]
+            member = Member.find_by(id: current_user.id)
+            @committees = member.committees.where("chair_id = ?", current_user.id)
+        else
+            @committees = Committee.all
+        end
     end
 
     def show

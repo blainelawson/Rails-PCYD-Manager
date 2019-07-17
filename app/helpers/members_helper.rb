@@ -19,4 +19,10 @@ module MembersHelper
             member.name
         end
     end
+
+    def view_chaired_link
+        if admin? || Committee.chairs.include?(current_user)
+            tag.a "view committees you chair", href: member_committees_path(current_user), :class => "edit"
+        end
+    end
 end
