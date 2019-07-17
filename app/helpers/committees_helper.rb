@@ -5,7 +5,6 @@ module CommitteesHelper
         else
             "Position empty"
         end
-        
     end
 
     def edit_committee_link(committee)
@@ -20,4 +19,23 @@ module CommitteesHelper
         end
     end
 
+    def committee_link(committee)
+        if admin? || current_user == committee.chair || Director.include?(current_user)
+            tag.a committee.name, href: committee_path(committee)
+        else
+            committee.name
+        end
+    end
+
+    def committee_star(committee)
+        if current_user == committee.chair
+            "*"
+        end
+    end
+
+    def edit_committee_members_link(committee)
+        if admin? || current_user == committee.chair
+            # tag.a "edit", href: edit_committee_members
+        end
+    end
 end

@@ -17,16 +17,19 @@ class MembersController < ApplicationController
     end
 
     def index
-        @members = Member.all
+        if params[:committee_id]
+            @members = Committee.find(params[:committee_id]).members
+        else
+            @members = Member.all
+        end
     end
 
     def show
-        # binding.pry
         @member = Member.find_by(id: params[:id])
     end
 
     def edit
-        @member = current_user
+        @member = Member.find_by(id: params[:id])
         @issues = Issue.all
         @new_issues = []
         3.times do
@@ -36,7 +39,7 @@ class MembersController < ApplicationController
     end
     
     def update
-        @member = current_user
+        @member = Member.find_by(id: params[:id])
         @member.update(member_params)
 
 

@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     resources :members, only: [:new, :show, :edit, :index]
   end
 
+  resources :admins do 
+    resources :committees, only: [:new, :show, :edit, :index]
+  end
+
 
   post 'sessions', :to => 'sessions#create'
 

@@ -8,6 +8,7 @@ module MembersHelper
     end
 
     def edit_member_link
+        # binding.pry
         tag.a "edit profile", href: edit_member_path(@member), :class => "edit" if admin? || member_privilege?
     end
 

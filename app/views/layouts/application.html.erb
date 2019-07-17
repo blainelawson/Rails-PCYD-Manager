@@ -24,6 +24,7 @@
       <li class="navbar"><a href="/directors" class="navbar">Directors</a></li>
       <li class="navbar"><a href="/committees" class="navbar">Committees</a></li>
       <li class="navbar"><a href="/members" class="navbar">Members</a></li>
+      <li class="navbar"><a href="/admin" class="navbar">Admin</a></li>
       <% if logged_in? %>
         <a href="/logout" class="logout">Log-out</a>
         <li class="navbar navbarright"><%= link_to "Your Profile", member_path(current_user) %></li>
