@@ -14,14 +14,19 @@
     <p>
     <%= f.label :chair, "Chairperson: " %>
     <% if @director.chair %> <!-- Would love a better way of doing this as well -->
-        <%= f.collection_select :chair, @members, :id, :name, { selected: @director.chair.id } %>
+        <%= f.collection_select :chair_id, @members, :id, :name, { selected: @director.chair.id } %>
     <% else %>
-        <%= f.collection_select :chair, @members, :id, :name, include_blank: "Select from list" %>
+        <%= f.collection_select :chair_id, @members, :id, :name, include_blank: "Select from list" %>
     <% end %>
     </p>
-    <% if @director.chair %>
-        <%= f.submit "Submit Changes" %>
+    <% if @director.title %>
+        <p><%= f.submit "Submit Changes" %><p>
     <% else %>
         <%= f.submit "Create New Director" %>
     <% end %>
+<% end %>
+<% if Director.exists?(@director.id) %>
+    <p>
+        <%= button_to "Delete Director Role", { controller: 'directors', action: 'delete', id: @director.id }, :method => :delete %>
+    </p>
 <% end %>

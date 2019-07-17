@@ -6,8 +6,6 @@ class DirectorsController < ApplicationController
 
     def create
         @director = Director.create(director_params)
-        @director.chair = Member.find_by(id: params[:director][:chair])
-        @director.save
         redirect_to directors_path
     end
 
@@ -23,15 +21,18 @@ class DirectorsController < ApplicationController
     def update
         @director = Director.find_by(id: params[:id])
         @director.update(director_params)
-        @director.chair = Member.find_by(id: params[:director][:chair])
-        @director.save
+        redirect_to directors_path
+    end
+
+    def destroy
+        Director.find_by(id: params[:id]).delete
         redirect_to directors_path
     end
 
     private
 
     def director_params
-        params.require(:director).permit(:title, :email, :phone)
+        params.require(:director).permit(:title, :email, :phone, :chair_id)
     end
 
 end

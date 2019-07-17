@@ -9,7 +9,6 @@ class MembersController < ApplicationController
         @member = Member.create(member_params)
 
         if @member
-            @member.issue_ids = params[:member][:issue_ids] # refactor with accepts_nested_attributes_for :issue_ids???
             session[:user_id] = @member.id
             redirect_to "/members/#{@member.id}/issues/edit_rank"
         else

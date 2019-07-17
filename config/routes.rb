@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   resources :members, except: [:show, :index] # I need to do this again to make the rest of the routes available, yes??????
 
   resources :directors
+  post '/directors/:id', :to => 'directors#delete'
 
   resources :issues
 
   resources :committees, except: [:show, :index]
-
   post '/committees/:id', :to => 'committees#delete'
 
   resources :committees, only: [:show, :index] do
