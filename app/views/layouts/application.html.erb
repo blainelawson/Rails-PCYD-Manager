@@ -45,9 +45,9 @@
         <small>&copy; 2019 <strong>PcydManager</strong></small>
 
         <% flash.each do |name, msg| %>
-          <% if flash[:message] -%>
-            <%= content_tag :div, name + msg.values.join, class: "error" %>
-          <% end -%>
+          <% msg.each do |m| %>
+            <p><%= content_tag :div, m, class: "#{name} center" %></p>
+          <% end %>
         <% end %>
       </footer>
     </div>

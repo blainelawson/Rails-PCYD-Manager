@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   root 'sessions#welcome'
 
   get '/login', :to => 'sessions#new'
@@ -9,14 +9,15 @@ Rails.application.routes.draw do
   get '/members/:member_id/issues/edit_rank', :to => 'member_issues#edit_rank'
   post '/members/:member_id/issues/edit', :to => 'member_issues#update_rank'
 
-
+  resources :members, except: [:show, :index] 
+  
   resources :members, only: [:show, :index] do 
     resources :issues, only: [:new, :show, :index] 
     resources :committees, only: [:new, :show, :index]
   end
 
 
-  resources :members, except: [:show, :index] 
+
 
   resources :directors
   post '/directors/:id', :to => 'directors#delete'

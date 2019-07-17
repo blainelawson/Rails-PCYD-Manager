@@ -3,15 +3,25 @@ class MembersController < ApplicationController
     def new 
         @member = Member.new
         @issues = Issue.all
+        @new_issues = []
+        3.times do
+            @issue = @member.issues.build
+            @new_issues << @issue
+        end
     end
 
     def create
         @member = Member.create(member_params)
 
-        if @member
+        if @member.id
+            flash[:success] = "Success! You've registered as #{@member.name}."
             session[:user_id] = @member.id
-            redirect_to "/members/#{@member.id}/issues/edit_rank"
+            redirect_to "/members/#{@member.id}/issues/edit_rank" # I can probably refactor this
         else
+            flash[:error] = []
+            @member.errors.messages.each do |k, v|
+                flash[:error] << k.to_s.capitalize + " " + v.join
+            end
             redirect_to new_member_path
         end
     end
