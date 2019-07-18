@@ -18,10 +18,7 @@ class MembersController < ApplicationController
             session[:user_id] = @member.id
             redirect_to "/members/#{@member.id}/issues/edit_rank" # I can probably refactor this
         else
-            flash[:error] = []
-            @member.errors.messages.each do |k, v|
-                flash[:error] << k.to_s.capitalize + " " + v.join
-            end
+            create_flash_errors(@member)
             redirect_to new_member_path
         end
     end
@@ -50,7 +47,7 @@ class MembersController < ApplicationController
 
 
         if !@member.errors.messages.empty?
-            flash[:message] = @member.errors.messages 
+            create_flash_errors(@member)
             redirect_to edit_member_path(@member)
         else
             redirect_to "/members/#{params[:id]}/issues/edit_rank"

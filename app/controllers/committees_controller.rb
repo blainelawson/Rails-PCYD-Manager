@@ -8,8 +8,16 @@ class CommitteesController < ApplicationController
 
     def create
         @committee = Committee.create(committee_params)
-        include_chair_on_committee
-        redirect_to committees_path
+        
+        if @committee.id
+            include_chair_on_committee
+            flash[:success] = []
+            flash[:success] << "Committee successfully created"
+            redirect_to committees_path
+        else
+            create_flash_errors(@committee)
+            redirect_to new_committee_path
+        end
     end
 
     def update

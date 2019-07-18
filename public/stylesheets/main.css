@@ -78,7 +78,6 @@
   
     body {
       background-color: lightblue;
-      color: #333;
       font-family: Sans-Serif;
       line-height: 18px;
     }
@@ -149,6 +148,14 @@
     div.error {
       color: red;
     }
+
+    div.success {
+      color: green;
+    }
+  }
+
+  div.success {
+    color: green;
   }
   
   @media screen and (max-width: 600px) {
@@ -157,6 +164,9 @@
       -webkit-box-shadow: none;
       box-shadow: none;
       width: auto;
+    }
+    div.success {
+      color: green;
     }
   
     .content, .sidebar {

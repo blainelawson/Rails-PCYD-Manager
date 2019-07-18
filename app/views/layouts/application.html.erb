@@ -44,9 +44,9 @@
       <footer class="branding">
         <small>&copy; 2019 <strong>PcydManager</strong></small>
 
-        <% flash.each do |name, msg| %>
-          <% msg.each do |m| %>
-            <p><%= content_tag :div, m, class: "#{name} center" %></p>
+        <%  flash.each do |name, msg| %>
+          <%  msg.each do |m| %>
+            <p><%=  content_tag :div, m, class: "#{name} center" %></p>
           <% end %>
         <% end %>
       </footer>

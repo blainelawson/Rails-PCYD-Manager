@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :is_admin?
+    helper_method :current_user, :logged_in?
 
     helpers 
 
@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
             !!session[:user_id]
         end
     
+        def create_flash_errors(object)
+            flash[:error] = []
+
+            object.errors.messages.each do |k, v|
+                flash[:error] << k.to_s.capitalize + " " + v.join
+            end
+        end
 end
