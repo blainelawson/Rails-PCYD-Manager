@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
 
     def create
         @member = Member.find_by(email: params[:member][:email])
-        binding.pry
         if @member
             session[:user_id] = @member.id
             redirect_to @member
