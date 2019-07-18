@@ -1,4 +1,6 @@
 class DirectorsController < ApplicationController
+    before_action :authenticate, except: [:show, :index]
+
     def new
         @director = Director.new
         @members = Member.all

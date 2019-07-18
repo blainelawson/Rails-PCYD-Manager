@@ -1,4 +1,5 @@
 class MemberIssuesController < ApplicationController
+    before_action :authenticate
     
     def edit_rank
         @member = Member.find(params[:member_id])

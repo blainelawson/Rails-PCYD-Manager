@@ -9,7 +9,7 @@
         <%= f.label :password, "Password: " %>
         <%= f.password_field :password %><br />
     </p>
-    <%= f.submit "Log In" %><br />
+    <p><%= f.submit "Log In" %></p>
 
-    <%= link_to "Log In with Google", '/auth/google_oauth2' %>
+    <%= link_to "Log In with Google", '/auth/google_oauth2', :class => "google" %>
 <% end %>

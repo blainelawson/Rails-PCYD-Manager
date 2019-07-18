@@ -1,4 +1,6 @@
 class CommitteesController < ApplicationController
+    before_action :authenticate, except: [:show, :index]
+
     def new
         @committee = Committee.new
         @members = Member.all

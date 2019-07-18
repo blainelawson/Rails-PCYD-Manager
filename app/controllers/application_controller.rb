@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
     helper_method :current_user, :logged_in?
 
     helpers 
@@ -16,6 +17,14 @@ class ApplicationController < ActionController::Base
 
             object.errors.messages.each do |k, v|
                 flash[:error] << k.to_s.capitalize + " " + v.join
+            end
+        end
+
+        def authenticate
+            if !logged_in?
+                flash[:error] = []
+                flash[:error] << "You must be logged in do that."
+                redirect_to '/login'
             end
         end
 end
