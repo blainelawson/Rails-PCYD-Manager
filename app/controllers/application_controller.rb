@@ -22,8 +22,7 @@ class ApplicationController < ActionController::Base
 
         def authenticate
             if !logged_in?
-                flash[:error] = []
-                flash[:error] << "You must be logged in do that."
+                flash[:error] = ["You must be logged in do that."]
                 redirect_to '/login'
             end
         end

@@ -1,0 +1,9 @@
+<h2>Issues</h2>
+<center><%= all_issues %> | <%= find_ages_16_to_26 %> | <%= find_ages_27_to_40 %></center>
+
+    <% @issues.each do |issue| %>
+        <p><%= issue.key_word %></p>
+    <% end %>
+
+<br />
+

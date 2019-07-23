@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-    before_action :authenticate, except: [:index]
+    before_action :authenticate, except: [:index, :new, :create]
 
     def new 
         @member = Member.new
@@ -12,10 +12,11 @@ class MembersController < ApplicationController
     end
 
     def create
-        @member = Member.create(member_params)
+        @member = Member.new(member_params)
 
-        if @member.id
-            flash[:success] = "Success! You've registered as #{@member.name}."
+        if @member && @member.save
+            flash[:success] = []
+            flash[:success] << "Success! You've registered as #{@member.name}."
             session[:user_id] = @member.id
             redirect_to "/members/#{@member.id}/issues/edit_rank" # I can probably refactor this
         else
@@ -60,7 +61,7 @@ class MembersController < ApplicationController
     def datify_dob
         if logged_in? && Member.exists?(current_user.id)
             params[:member][:dob] = current_user.dob
-        else
+        elsif !params[:member][:month].empty? && !params[:member][:day].empty? && !params[:member][:year].empty?
             month = params[:member][:month].to_i
             day = params[:member][:day].to_i
             year = params[:member][:year].to_i
@@ -69,7 +70,6 @@ class MembersController < ApplicationController
     end
 
     def member_params
-        datify_dob
-        params.require(:member).permit(:name, :phone, :email, :address, :dob, :password, issue_ids: [], issues_attributes: [:key_word] )
+        params.require(:member).permit(:name, :phone, :email, :address, datify_dob, :password, issue_ids: [], issues_attributes: [:key_word] )
     end
 end

@@ -17,12 +17,11 @@ class SessionsController < ApplicationController
 
     def create
         @member = Member.find_by(email: params[:member][:email])
-        if @member
+        if @member && @member.authenticate(params[:member][:password])
             session[:user_id] = @member.id
             redirect_to @member
         else
-            flash[:error] = []
-            flash[:error] << "Could not log you in with that information"
+            flash[:error] = ["Could not log you in with that information"]
             redirect_to '/login'
         end
     end
