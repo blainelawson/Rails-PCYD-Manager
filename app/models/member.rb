@@ -21,6 +21,10 @@ class Member < ApplicationRecord
     scope :young, -> { where("dob > ?", 22.years.ago) }
     scope :old, -> { where("dob < ?", 22.years.ago)}
 
+    def self.most_active_members
+        self.joins(:committee_members).group(:id).order('COUNT(members.id) DESC').limit(3)
+    end
+
     def self.young_issues
         young.collect do |member|
             member.issues.collect do |issue|
@@ -45,4 +49,7 @@ class Member < ApplicationRecord
         end
     end
 
+    # Member and find the one with highest member.committees.length
+
+    
 end

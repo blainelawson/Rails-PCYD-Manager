@@ -15,8 +15,7 @@ class MembersController < ApplicationController
         @member = Member.new(member_params)
 
         if @member && @member.save
-            flash[:success] = []
-            flash[:success] << "Success! You've registered as #{@member.name}."
+            flash[:success] = ["Success! You've registered as #{@member.name}."]
             session[:user_id] = @member.id
             redirect_to "/members/#{@member.id}/issues/edit_rank" # I can probably refactor this
         else

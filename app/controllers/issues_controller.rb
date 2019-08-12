@@ -18,6 +18,11 @@ class IssuesController < ApplicationController
         else            
             @issues = Issue.all
         end
+
+        respond_to do |f|
+            f.html
+            f.json { render json: @issues }
+        end
     end
 
     def edit

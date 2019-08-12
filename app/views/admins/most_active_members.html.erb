@@ -1,0 +1,4 @@
+<h2>Most Active Members</h2>
+<% @members.each do |member| %>
+   <p><%= member.name %> <%= member.committees.count %></p>
+<% end %>

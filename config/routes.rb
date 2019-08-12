@@ -18,9 +18,6 @@ Rails.application.routes.draw do
     resources :committees, only: [:new, :show, :index]
   end
 
-
-
-
   resources :directors
   post '/directors/:id', :to => 'directors#delete'
 
@@ -32,6 +29,8 @@ Rails.application.routes.draw do
   resources :committees, only: [:show, :index] do
     resources :members, only: [:new, :show, :edit, :index]
   end
+
+  get '/admins/most-active-members', :to => 'admins#most_active_members'
 
   resources :admins do 
     resources :committees, only: [:new, :show, :edit, :index]
