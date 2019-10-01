@@ -13,13 +13,11 @@ class MembersController < ApplicationController
     end
 
     def create
-        binding.pry
         @member = Member.new(member_params)
 
         if @member && @member.save
             flash[:success] = ["Success! You've registered as #{@member.name}."]
             session[:user_id] = @member.id
-            redirect_to "/members/#{@member.id}/issues/edit_rank" # I can probably refactor this
         else
             create_flash_errors(@member)
             redirect_to new_member_path
