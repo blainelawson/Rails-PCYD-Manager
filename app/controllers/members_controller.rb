@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
     before_action :authenticate, except: [:index, :new, :create]
+    skip_before_action :verify_authenticity_token, only: :create
 
     def new 
         @member = Member.new
@@ -12,6 +13,7 @@ class MembersController < ApplicationController
     end
 
     def create
+        binding.pry
         @member = Member.new(member_params)
 
         if @member && @member.save
@@ -69,6 +71,6 @@ class MembersController < ApplicationController
     end
 
     def member_params
-        params.require(:member).permit(:name, :phone, :email, :address, datify_dob, :password, issue_ids: [], issues_attributes: [:key_word] )
+        params.require(:member).permit(:name, :phone, :email, :address, datify_dob, :dob, :password, issue_ids: [], issues_attributes: [:key_word] )
     end
 end

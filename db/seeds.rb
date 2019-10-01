@@ -39,6 +39,12 @@ DATA = {
   :committees => [
     "Magic Making",
     "Enchantments"
+  ],
+  :issues => [
+    "Climate Change",
+    "Healthcare",
+    "Education",
+    "Gun Control"
   ]
 }
 
@@ -46,6 +52,13 @@ def main
   make_members
   make_committees
   make_directors
+  make_issues
+end
+
+def make_issues
+  DATA[:issues].each do |issue|
+    Issue.create(key_word: issue)
+  end
 end
 
 def make_members

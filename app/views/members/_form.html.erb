@@ -1,9 +1,9 @@
 <div id="form-part-1">
-    <%= form_for(@member) do |f| %>
+    <%= form_with model: @member, id: "member_info_form" do |f| %>
         <p><%= f.label :name, "Name: " %><%= f.text_field :name %></p>
         <% if !logged_in? %>
             <p>Date of Birth:</p>
-            <p> <%= f.label :month, "Month: " %><%= f.text_field :month, maxlength: "2" %> 
+            <p> <%= f.label :month, "Month: " %><%= f.text_field :month, maxlength: "2" %>
                 <%= f.label :day, "Day: " %><%= f.text_field :day, maxlength: "2" %>
                 <%= f.label :year, "Year: " %><%= f.text_field :year, maxlength: "4" %>    
             </p>
@@ -26,24 +26,5 @@
         <% end %>
     <% end %>
 </div>
-<div id="form-part-2">
-    <%= form_for(@member) do |f| %>
-    
-    <p>
-        <%= f.label :issue_id, "What issues interest you? " %><br />
-        <p>
-            <%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
-                <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
-            <% end %>    
-        </p>
-        <p>
-            Issue not listed? Enter up to three new ones here:<br />
-            <%= f.fields_for :issues, @new_issues do |issue_fields| %>
-                <%= issue_fields.text_field :key_word %>
-            <% end %>
-        </p>
-    </p>
 
-<% end %>
-</div>
 <%= javascript_include_tag "signup_issues" %>
