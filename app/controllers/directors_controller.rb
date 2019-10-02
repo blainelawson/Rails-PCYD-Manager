@@ -1,4 +1,6 @@
 class DirectorsController < ApplicationController
+    before_action :authenticate, except: [:show, :index]
+
     def new
         @director = Director.new
         @members = Member.all
@@ -6,7 +8,15 @@ class DirectorsController < ApplicationController
 
     def create
         @director = Director.create(director_params)
-        redirect_to directors_path
+
+        if @director.id
+            flash[:success] = []
+            flash[:success] << "Director successfully created"
+            redirect_to directors_path
+        else
+            create_flash_errors(@director)
+            redirect_to new_director_path
+        end
     end
 
     def index

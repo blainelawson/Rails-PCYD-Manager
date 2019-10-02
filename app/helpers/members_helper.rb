@@ -7,8 +7,8 @@ module MembersHelper
         current_user == Member.find_by(id: params[:id])
     end
 
-    def edit_member_link
-        tag.a "edit profile", href: edit_member_path(@member), :class => "edit" if admin? || member_privilege?
+    def edit_member_link(member)
+        tag.a "edit profile", href: edit_member_path(member), :class => "edit" if admin? || member_privilege?
     end
 
     def view_member_link_or_text(member)
@@ -16,6 +16,12 @@ module MembersHelper
             tag.a member.name, href: member_path(member)
         else
             member.name
+        end
+    end
+
+    def view_chaired_link
+        if admin? || Committee.chairs.include?(current_user)
+            tag.a "view committees you chair", href: member_committees_path(current_user), :class => "edit"
         end
     end
 end

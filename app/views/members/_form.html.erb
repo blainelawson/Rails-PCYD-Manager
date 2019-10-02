@@ -1,40 +1,51 @@
-<%= form_for(@member) do |f| %>
-    <p><%= f.label :name, "Name: " %><%= f.text_field :name %></p>
-    <% if !logged_in? %>
-        <p>Date of Birth:</p>
-        <p> <%= f.label :month, "Month: " %><%= f.text_field :month, maxlength: "2" %> 
-            <%= f.label :day, "Day: " %><%= f.text_field :day, maxlength: "2" %>
-            <%= f.label :year, "Year: " %><%= f.text_field :year, maxlength: "4" %>    
-        </p>
+<div id="form-part-1">
+    <%= form_with model: @member, id: "member_info_form" do |f| %>
+        <p><%= f.label :name, "Name: " %><%= f.text_field :name %></p>
+        <% if !logged_in? %>
+            <p>Date of Birth:</p>
+            <p> <%= f.label :month, "Month: " %><%= f.text_field :month, maxlength: "2" %>
+                <%= f.label :day, "Day: " %><%= f.text_field :day, maxlength: "2" %>
+                <%= f.label :year, "Year: " %><%= f.text_field :year, maxlength: "4" %>    
+            </p>
+        <% end %>
+        <p><%= f.label :phone, "Phone: " %><%= f.text_field :phone %></p>
+        <p><%= f.label :email, "E-mail: " %><%= f.text_field :email %></p>
+        <p><%= f.label :address, "Address: " %><%= f.text_field :address %></p>
+        <% if logged_in? %>
+            <p>
+                <%= f.label :password, "Re-enter your password: " %>
+                <%= f.password_field :password %>
+            </p>
+            <%= f.submit "Submit Changes", class: "submit-1" %>
+        <% else %>
+            <p>
+                <%= f.label :password, "Password: " %>
+                <%= f.password_field :password %>
+            </p>
+            <%= f.submit "Register", class: "submit-1" %>
+        <% end %>
     <% end %>
-    <p><%= f.label :phone, "Phone: " %><%= f.text_field :phone %></p>
-    <p><%= f.label :email, "E-mail: " %><%= f.text_field :email %></p>
-    <p><%= f.label :address, "Address: " %><%= f.text_field :address %></p>
-    <p>
-        <%= f.label :issue_id, "What issues interest you? " %><br />
+</div>
+<br />
+<div id="form-part-2" style="display: none;">
+        <%= form_with model: @member, id: "member_issues_section", method: "PATCH" do |f| %>
+    
         <p>
-            <%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
-                <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
-            <% end %>    
+            <%= f.label :issue_id, "What issues interest you? " %><br />
+            <p>
+                <%= f.collection_check_boxes(:issue_ids, @issues, :id, :key_word) do |b| %>
+                    <%= b.check_box(checked: @member.issue_ids.include?(b.object.id)) + " " + b.label %><%= " | " if b.object != @issues.last %>
+                <% end %>    
+            </p>
+            <p>
+                Issue not listed? Enter up to three new ones here:<br />
+                <%= f.fields_for :issues, @new_issues do |issue_fields| %>
+                    <%= issue_fields.text_field :key_word %>
+                <% end %>
+            </p>
         </p>
-        <p>
-            Issue not listed? Enter up to three new ones here:<br />
-            <%= f.fields_for :issues, @new_issues do |issue_fields| %>
-                <%= issue_fields.text_field :key_word %>
-            <% end %>
-        </p>
-    </p>
-    <% if logged_in? %>
-        <p>
-            <%= f.label :password, "Re-enter your password: " %>
-            <%= f.password_field :password %>
-        </p>
-        <%= f.submit "Submit Changes" %>
-    <% else %>
-        <p>
-            <%= f.label :password, "Password: " %>
-            <%= f.password_field :password %>
-        </p>
-        <%= f.submit "Register" %>
-    <% end %>
-<% end %>
+        <%= f.submit "Submit Issues" %>
+    <% end %>   
+</div>
+
+<%= javascript_include_tag "signup_issues" %>

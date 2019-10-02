@@ -1,3 +1,7 @@
+a.google {
+  font-size: 25pt;
+}
+
 @media screen {
     /* --- Reset Styles --- */
     * {
@@ -35,6 +39,10 @@
     li.navbar {
       float: left;
     }
+
+    li.navbarright {
+      float: right;
+    }
   
     img.navbar {
       height: 50px;
@@ -67,6 +75,10 @@
     li.navbar a:hover {
       background-color: #B9BAD9;
     }
+
+    li.navbarright a:hover {
+      background-color: #B9BAD9;
+    }
   
     /* --- Welcome Page Styles --- */
     .center {
@@ -78,7 +90,6 @@
   
     body {
       background-color: lightblue;
-      color: #333;
       font-family: Sans-Serif;
       line-height: 18px;
     }
@@ -145,6 +156,18 @@
       margin-top: 20px;
       padding-top: 20px;
     }
+
+    div.error {
+      color: red;
+    }
+
+    div.success {
+      color: green;
+    }
+  }
+
+  div.success {
+    color: green;
   }
   
   @media screen and (max-width: 600px) {
@@ -153,6 +176,9 @@
       -webkit-box-shadow: none;
       box-shadow: none;
       width: auto;
+    }
+    div.success {
+      color: green;
     }
   
     .content, .sidebar {

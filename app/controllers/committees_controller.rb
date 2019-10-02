@@ -1,13 +1,25 @@
 class CommitteesController < ApplicationController
+    before_action :authenticate, except: [:show, :index]
+
     def new
         @committee = Committee.new
         @members = Member.all
+
+        @member = Member.find_by(id: params[:member_id]) if params[:member_id]
     end
 
     def create
         @committee = Committee.create(committee_params)
-        include_chair_on_committee
-        redirect_to committees_path
+        
+        if @committee.id
+            include_chair_on_committee
+            flash[:success] = []
+            flash[:success] << "Committee successfully created"
+            redirect_to committees_path
+        else
+            create_flash_errors(@committee)
+            redirect_to new_committee_path
+        end
     end
 
     def update
@@ -18,7 +30,12 @@ class CommitteesController < ApplicationController
     end
    
     def index
-        @committees = Committee.all
+        if params[:member_id]
+            member = Member.find_by(id: current_user.id)
+            @committees = member.committees.where("chair_id = ?", current_user.id)
+        else
+            @committees = Committee.all
+        end
     end
 
     def show

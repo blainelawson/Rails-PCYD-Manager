@@ -1,5 +1,6 @@
 <h2>Welcome, <%= @member.name %> </h2>
-<%= edit_member_link %>
+<%= edit_member_link(@member) %>
+
 <div>
   <h3>Contact Info <br/></h3>
   <ul style="list-style-type:none;">
@@ -7,11 +8,12 @@
     <li>Phone: <%=@member.phone%></li>
     <li>Address: <%= @member.address %></li>
   </ul>
-
 </div>
+
 <br />
+
 <div>
-  <h3>What''s Important to You: </h3>
+  <h3>What's Important to You: </h3>
   <div>
   <ol>
     <% @member.issues.sort.each do |issue| %>
@@ -19,13 +21,16 @@
     <% end %>
   </ol>
   </div>
+
 </div>
+
 <br />
+
 <div>
-  <h3>Your Committees  </h3>
+  <h3>Your Committees <%= view_chaired_link %></h3>
   <ul>
     <% @member.committees.each do |committee|%>
-        <li class="list"><%= committee.name %></li>
+        <li class="list"><%= committee_link(committee) %><%= committee_star(committee) %></li>
     <%end%>
   </ul>
 </div>

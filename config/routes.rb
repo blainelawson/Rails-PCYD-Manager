@@ -1,4 +1,6 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
+  get '/auth/:provider/callback' => 'sessions#omniauth'
+
   root 'sessions#welcome'
 
   get '/login', :to => 'sessions#new'
@@ -9,13 +11,12 @@ Rails.application.routes.draw do
   get '/members/:member_id/issues/edit_rank', :to => 'member_issues#edit_rank'
   post '/members/:member_id/issues/edit', :to => 'member_issues#update_rank'
 
-
+  resources :members, except: [:show, :index] 
+  
   resources :members, only: [:show, :index] do 
     resources :issues, only: [:new, :show, :index] 
+    resources :committees, only: [:new, :show, :index]
   end
-
-
-  resources :members, except: [:show, :index] 
 
   resources :directors
   post '/directors/:id', :to => 'directors#delete'
@@ -29,8 +30,15 @@ Rails.application.routes.draw do
     resources :members, only: [:new, :show, :edit, :index]
   end
 
+  get '/admins/most-active-members', :to => 'admins#most_active_members'
+
+  resources :admins do 
+    resources :committees, only: [:new, :show, :edit, :index]
+  end
+
 
   post 'sessions', :to => 'sessions#create'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

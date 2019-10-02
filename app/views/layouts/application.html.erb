@@ -24,11 +24,14 @@
       <li class="navbar"><a href="/directors" class="navbar">Directors</a></li>
       <li class="navbar"><a href="/committees" class="navbar">Committees</a></li>
       <li class="navbar"><a href="/members" class="navbar">Members</a></li>
+      <% if admin? %>
+        <li class="navbar"><a href="/admins" class="navbar">Admin</a></li>
+      <% end %>
       <% if logged_in? %>
-        <a href="/logout" class="logout">Log-out</a>
+        <li class="navbarright"><a href="/logout" class="logout">Log-out</a></li>
         <li class="navbar navbarright"><%= link_to "Your Profile", member_path(current_user) %></li>
       <% else %>
-        <a href="/login" class="logout">Log-in</a>
+        <li class="navbarright"><a href="/login" class="logout">Log-in</a></li>
       <% end %>
       <img src="/images/PCYD_logo.png" class="navbar">
 
@@ -42,13 +45,13 @@
 
       <footer class="branding">
         <small>&copy; 2019 <strong>PcydManager</strong></small>
-
-        <% flash.each do |name, msg| %>
-          <% if flash[:message] -%>
-            <%= content_tag :div, name + msg.values.join, class: "error" %>
-          <% end -%>
+        <%  flash.each do |name, msg| %>
+        <%  msg.each do |m| %>
+          <p><%=  content_tag :div, m, class: "#{name} center" %></p>
         <% end %>
+      <% end %>
       </footer>
+
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
