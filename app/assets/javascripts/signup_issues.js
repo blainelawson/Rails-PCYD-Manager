@@ -9,7 +9,9 @@ function attachListeners() {
             method: "POST",
             body: formData
         })
-        .then(()=>{
+        .then(resp => resp.json())
+        .then(member =>{debugger
+            document.querySelector('h2').innerText = `Registration Success! Welcome, ${member.name}`
             document.getElementById('form-part-2').style.display = "block"
         })
     })

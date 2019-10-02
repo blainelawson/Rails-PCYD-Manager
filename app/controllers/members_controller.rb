@@ -16,8 +16,8 @@ class MembersController < ApplicationController
         @member = Member.new(member_params)
 
         if @member && @member.save
-            flash[:success] = ["Success! You've registered as #{@member.name}."]
             session[:user_id] = @member.id
+            render json: @member
         else
             create_flash_errors(@member)
             redirect_to new_member_path
