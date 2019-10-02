@@ -1,6 +1,6 @@
 **PCYD Manager**
 
-WALTHROUGH: https://www.loom.com/share/54b3405010b64a1a839e939e10e85a22
+WALTHROUGH: https://www.loom.com/share/7e2d9bd2ca1b4bfe9599c040ac1ec159
 
 PCYD Manager is a resource management tool to keep track of members, chairpersons, and boardmembers of the Pinellas County Young Democrats. It has tiers of use:
   
