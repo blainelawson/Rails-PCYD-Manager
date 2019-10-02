@@ -28,7 +28,7 @@
 </div>
 <br />
 <div id="form-part-2" style="display: none;">
-        <%= form_with model: @member, id: "member_issues_section" do |f| %>
+        <%= form_with model: @member, id: "member_issues_section", method: "PATCH" do |f| %>
     
         <p>
             <%= f.label :issue_id, "What issues interest you? " %><br />
