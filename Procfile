@@ -1,0 +1,1 @@
+web: rails s -p localhost:3000
