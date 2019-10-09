@@ -4,7 +4,7 @@ function attachListeners() {
         let myForm = document.getElementById('member_info_form')
         let formData = new FormData(myForm)
 
-        return fetch('https://pcyd-manager.heroku.com/members', {
+        return fetch('/members', {
             credentials: "include",
             method: "POST",
             body: formData
