@@ -16,9 +16,9 @@ module RailsPcydManager
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
-  config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
-    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-  }
+  # config.action_dispatch.default_headers = {
+  #   'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
+  #   'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+  # }
 end
 
