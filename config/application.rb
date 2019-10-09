@@ -17,7 +17,7 @@ module RailsPcydManager
     # the framework and any gems in your application.
 
     config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => 'https://heroku.com',
+      'Access-Control-Allow-Origin' => 'http://heroku.com',
       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
   end
