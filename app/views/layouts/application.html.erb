@@ -17,25 +17,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
-  </head>
-  <body>
-    <ul class="navbar">
-      <li class="navbar"><a href="/" class="navbar">Home</a></li>
-      <li class="navbar"><a href="/directors" class="navbar">Directors</a></li>
-      <li class="navbar"><a href="/committees" class="navbar">Committees</a></li>
-      <li class="navbar"><a href="/members" class="navbar">Members</a></li>
-      <% if admin? %>
-        <li class="navbar"><a href="/admins" class="navbar">Admin</a></li>
-      <% end %>
-      <% if logged_in? %>
-        <li class="navbarright"><a href="/logout" class="logout">Log-out</a></li>
-        <li class="navbar navbarright"><%= link_to "Your Profile", member_path(current_user) %></li>
-      <% else %>
-        <li class="navbarright"><a href="/login" class="logout">Log-in</a></li>
-      <% end %>
-      <img src="/images/PCYD_logo.png" class="navbar">
 
-    </ul>
+    <!-- Bootstrap core CSS -->
+    <link href="stylesheets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="stylesheets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="stylesheets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/landing-page.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/directors">Directors</a>
+        <a class="navbar-brand" href="/committees">Committees</a>
+        <a class="navbar-brand" href="/members">Members</a>
+        <% if admin? %>
+        <a class="navbar-brand" href="/admins">Admin</a>
+        <% end %>
+        <% if !logged_in? %>
+          <a class="btn btn-primary" href="/login">Sign In</a>
+        <% else %>
+          <a class="btn btn-primary" href="/logout">Log Out</a>
+        <% end %>
+      </div>
+    </nav>
 
     <div class="wrapper">
 
