@@ -1,5 +1,12 @@
 {
   "name": "Rails-PCYD-Manager",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "fomantic-ui": "^2.7.8",
+    "gulp-util": "^3.0.8",
+    "semantic-ui": "^2.4.2"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
