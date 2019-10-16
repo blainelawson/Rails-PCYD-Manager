@@ -22,7 +22,7 @@ module CommitteesHelper
     end
 
     def committee_link(committee)
-        if admin? || current_user == committee.chair || Director.include?(current_user)
+        if admin? || current_user == committee.chair || Director.all.include?(current_user)
             tag.a committee.name, href: committee_path(committee)
         else
             committee.name
