@@ -1,17 +1,69 @@
 <h2>Log-in</h2>
+<div class="ui button demo">Demo Privileges</div>
+<div class="ui flowing popup top left transition">
+  <div class="ui three column divided center aligned grid">
+    <div class="column">
+      <h4 class="ui header">Basic</h4>
+      <p>Member access</p>
+      <div class="ui button gen_member">Log-in</div>
+    </div>
+    <div class="column">
+      <h4 class="ui header">Director</h4>
+      <p>Director Access</p>
+      <div class="ui button director">Log-in</div>
+    </div>
+    <div class="column">
+      <h4 class="ui header">Admin</h4>
+      <p>Admin access</p>
+      <div class="ui button admin">Log-in</div>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<div>
+    <%= form_for @member, :url => 'sessions' do |f| %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <p>
+            <%= f.label :email, "Email: " %>
+            <%= f.text_field :email %><br />
+        </p>
+        <p>
+            <%= f.label :password, "Password: " %>
+            <%= f.password_field :password %><br />
+        </p>
+        <p><%= f.submit "Log In", class: "ui button login" %></p>
 
-<%= form_for @member, :url => 'sessions' do |f| %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <p>
-        <%= f.label :email, "Email: " %>
-        <%= f.text_field :email %><br />
-    </p>
-    <p>
-        <%= f.label :password, "Password: " %>
-        <%= f.password_field :password %><br />
-    </p>
-    <p><%= f.submit "Log In" %></p>
+    <% end %>
+</div>
+<br />
+<div>
+    <%= link_to "Log In with Google", '/auth/google_oauth2', :class => "google", method: "post" %>
+</div>
+<script type="application/javascript">
+$('.demo').popup({
+    inline: true,
+    on : 'hover',
+    hoverable  : true,
+    position : 'bottom left'
+});
 
-<% end %>
+$('.admin').click(function(){
+    $('#member_email').val('blaine.lawson@gmail.com')
+    $('#member_password').val('password')
+    $('form').submit()
+})
 
-<%= link_to "Log In with Google", '/auth/google_oauth2', :class => "google", method: "post" %>
+$('.director').click(function(){
+    $('#member_email').val('max.charles@gmail.com')
+    $('#member_password').val('password')
+    $('form').submit()
+})
+
+$('.gen_member').click(function(){
+    $('#member_email').val('skaij@aol.com')
+    $('#member_password').val('password')
+    $('form').submit()
+})
+
+</script>

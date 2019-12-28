@@ -1,0 +1,12 @@
+2019-10-09 15:14:38.979 EDT [27386] LOG:  could not bind IPv4 address "127.0.0.1": Permission denied
+2019-10-09 15:14:38.979 EDT [27386] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-10-09 15:14:38.979 EDT [27386] WARNING:  could not create listen socket for "localhost"
+2019-10-09 15:14:38.979 EDT [27386] FATAL:  could not create any TCP/IP sockets
+2019-10-09 15:14:38.980 EDT [27386] LOG:  database system is shut down
+2019-10-09 15:16:09.552 EDT [27411] LOG:  could not bind IPv4 address "127.0.0.1": Permission denied
+2019-10-09 15:16:09.552 EDT [27411] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-10-09 15:16:09.553 EDT [27411] WARNING:  could not create listen socket for "localhost"
+2019-10-09 15:16:09.553 EDT [27411] FATAL:  could not create any TCP/IP sockets
+2019-10-09 15:16:09.553 EDT [27411] LOG:  database system is shut down
+2019-10-09 15:35:33.557 EDT [28300] FATAL:  data directory "/usr/local/var/postgres" has group or world access
+2019-10-09 15:35:33.557 EDT [28300] DETAIL:  Permissions should be u=rwx (0700).

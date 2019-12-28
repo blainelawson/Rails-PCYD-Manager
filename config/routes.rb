@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/login', :to => 'sessions#new'
   get '/logout', :to => 'sessions#destroy'
-  
+   
   get '/signup', :to => 'members#new'
 
   get '/members/:member_id/issues/edit_rank', :to => 'member_issues#edit_rank'
