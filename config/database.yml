@@ -6,7 +6,7 @@
 #
 default: &default
   host: localhost
-  user: user
+  user: blainelawson
   password: password
   adapter: postgresql
   encoding: unicode
